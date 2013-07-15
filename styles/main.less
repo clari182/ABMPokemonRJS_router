@@ -1,0 +1,94 @@
+@displayIB: inline-block;
+@15px: 15px;
+.edit {
+	display: @displayIB;
+	width: @15px;
+	height: @15px;
+	background: url("images/pencil.jpg") no-repeat scroll transparent;	
+}
+
+.destroy{
+	display: @displayIB;
+	width: @15px;
+	height: @15px;
+	background: url("images/icon_small_cross.gif") no-repeat;	
+}
+.fieldName, .fieldValue{
+	font-family: arial;
+}
+
+.fieldName {
+	font-weight: bold;
+}
+
+.pokemonButton {
+	width: auto;
+	border: 0 none;
+	border-radius: 10px;
+	
+	background: #2E67B2;
+	font-size: 14px;
+	font-family: Arial;
+    padding: 4px 12px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(155, 155, 155, 0.75);
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+}
+
+.txtPokemon{
+	border: 1px solid;
+	border-radius: 5px;
+}
+
+li {
+	padding-top: 15px;
+}
+
+.halfDiv {
+	width: 50%;
+    display: @displayIB;
+    float: left;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+.wildPokemon {
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+    border-style: solid;
+    border-width: 1px;
+    width: 47%;
+}
+
+.view {
+    padding-bottom: 10px;
+}
+
+.pokemonTable {
+    margin-bottom: 20px;
+    width: 80%;
+}
+.pokemonTable caption + thead tr:first-child th, 
+.pokemonTable caption + thead tr:first-child td, 
+.pokemonTable colgroup + thead tr:first-child th, 
+.pokemonTable colgroup + thead tr:first-child td, 
+.pokemonTable thead:first-child tr:first-child th, 
+.pokemonTable thead:first-child tr:first-child td {
+    border-top: 0 none;
+}
+.pokemonTable thead th {
+    vertical-align: bottom;
+}
+.pokemonTable th {
+    font-weight: bold;
+}
+.pokemonTable th, .pokemonTable td {
+    border-top: 1px solid #DDDDDD;
+    line-height: 20px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
