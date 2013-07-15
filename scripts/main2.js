@@ -3,6 +3,7 @@ require.config({
     jquery: 'libs/jquery/jquery-min',
     underscore: 'libs/underscore/underscore-min',
     backbone: 'libs/backbone/backbone-optamd3-min',
+		handlebars: 'libs/handlebars',
     text: 'libs/require/text'
   }
 });

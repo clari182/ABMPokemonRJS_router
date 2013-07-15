@@ -1,12 +1,14 @@
 define([
   'jquery', 
   'underscore', 
-  'backbone'/*,
-  'text!templates/pokemonEditTemplate.html'*/
-  ], function($, _, Backbone, pokemonTemplate){
+  'backbone',
+	'handlebars',
+  'text!templates/pokemonTemplate.html'
+  ], function($, _, Backbone, Handlebars, pokemonTemplate){
 	
-	var PokemonView = Backbone.View.extend({
+	var PokemonView = Backbone.View.extend({	
 		tagName: 'tr',		
+		template: Handlebars.compile(pokemonTemplate),
 		events:{				
 			"dblclick .view": "edit",
 			"click .edit": "enableEdit",
@@ -23,13 +25,13 @@ define([
 		},
 		render: function() {
 			this.$el.empty();			
-			//var source   = _.template(pokemonTemplate);
+			/*var source   = _.template(pokemonTemplate);
 			var template = Handlebars.compile(source);
 			var data = { 
 				name: this.model.toJSON().name,
 				level: this.model.toJSON().level 
 			};
-			this.$el.html(template(data));
+			this.$el.html(this.template(data));*/
 			this.input = this.$(".fieldsEdit");
 			return this;
 		},

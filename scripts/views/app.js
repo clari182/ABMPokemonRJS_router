@@ -36,6 +36,13 @@ define([
 			return this;
 		},
 		
+		newAttributes: function() {
+      return {
+        name: this.$("#pokemonName").val(),
+        level:  this.$("#pokemonLevel").val()    
+      };
+    },
+		
 		addOne: function(pokemon) {
 			var view = new PokemonView({model: pokemon});			
 			$("#pokedex").append(view.render().el);		
@@ -54,10 +61,7 @@ define([
 		createOnEnter: function(e) {
 			if ( e.keyCode != 13 ) return;
 			if ( !this.$("#pokemonName").val()) return;
-			Pokemons.create({
-				name: this.$("#pokemonName").val(), 
-				level: this.$("#pokemonLevel").val()
-			});
+			Pokemons.create(this.newAttributes());
 			this.input.val("");					
 		},
 		

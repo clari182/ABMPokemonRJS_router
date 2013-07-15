@@ -2,8 +2,9 @@ define([
   'jquery', 
   'underscore', 
   'backbone',
+	'handlebars',
   'text!templates/pokemonEditTemplate.html'
-  ], function($, _, Backbone, pokemonEditTemplate){
+  ], function($, _, Backbone, Handlebars, pokemonEditTemplate){
 	
 		var PokemonEdit = Backbone.View.extend({
 			tagName: 'div',				
