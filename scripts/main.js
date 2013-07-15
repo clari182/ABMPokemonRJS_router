@@ -277,5 +277,5 @@ $(function() {
 		}
 	});
 	var app = new Router();
-	Backbone.history.start(); //Needs to be called to check for changes in the url	
+	Backbone.history.start(); //Needs to be called to check for a	
 });
