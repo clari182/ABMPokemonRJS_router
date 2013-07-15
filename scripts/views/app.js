@@ -5,7 +5,7 @@ define([
   'collections/pokedex',
 	'collections/wildPokemons',
   'views/pokemon'
-  ], function($, _, Backbone, Pokemons, PokemonView){
+  ], function($, _, Backbone, Pokemons, WildPokemonsList, PokemonView){
 		var AppView = Backbone.View.extend({
 		el: $("#pokemonapp"),		
 		
@@ -20,10 +20,10 @@ define([
 		initialize: function() {
 			this.input = $("#newPokemon");			
 			
-			this.listenTo(Pokemons, "add", this.addOne);
-			this.listenTo(WildPokemonsList, "add", this.addOneWild);
-			this.listenTo(Pokemons, "reset", this.addAll);
-			this.listenTo(Pokemons, "all", this.render);
+			this.bind(Pokemons, "add", this.addOne);
+			this.bind(WildPokemonsList, "add", this.addOneWild);
+			this.bind(Pokemons, "reset", this.addAll);
+			this.bind(Pokemons, "all", this.render);
 			this.main = $("#main");
 			
 			Pokemons.fetch();

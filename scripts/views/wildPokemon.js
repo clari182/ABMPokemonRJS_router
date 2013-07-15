@@ -11,8 +11,8 @@ define([
 			},
 			initialize: function(){
 				var self = this;
-				self.listenTo(self.model, "change", self.render);
-				self.listenTo(self.model, "destroy", self.remove);
+				self.bind(self.model, "change", self.render);
+				self.bind(self.model, "destroy", self.remove);
 			},
 			render: function(){
 				this.$el.empty();			
