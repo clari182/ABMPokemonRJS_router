@@ -1,5 +1,7 @@
+//$(function() {	
 
-$(function() {	
+	require(["lib/jquery", "lib/underscore", "lib/backbone", "lib/handlebars","lib/handlebars"], function(){
+	
 	//Models
 	var pokemonAux = null;
 	var Pokemon = Backbone.Model.extend( {
@@ -277,5 +279,6 @@ $(function() {
 		}
 	});
 	var app = new Router();
-	Backbone.history.start(); //Needs to be called to check for a	
-});
+	Backbone.history.start(); //Needs to be called to check for changes in the url	
+	});
+//});

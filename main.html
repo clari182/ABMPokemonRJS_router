@@ -4,46 +4,10 @@
 		<title>Backbone 2nd app</title>		
 	</head>
 	<body>		
-		<script src="lib/jquery.js"></script>
-		<script src="lib/underscore.js"></script>
-		<script src="lib/backbone.js"></script>		
-		<script src="lib/backbone.localStorage.js"></script>
-		<script src="lib/handlebars.js"></script>
-		<!--<script src="scripts/require.js"></script>-->
-		
-		<script src="scripts/main.js"></script>
+		<script data-main="scripts/main2" src="scripts/libs/require/require.js"></script>
+			
 		<link rel="stylesheet" href="styles/main.css	"/>
-		
-		<script type="text/x-handlebars-template" id="item-template">
-				<td>{{name}}</td>
-				<td>{{level}}</td>						
-				<td><div class="edit"></div></td>
-				<td><div class="destroy"></div></td>			
-		</script>
-		
-		<script type="text/x-handlebars-template" id="wild-item-template">
-			<div class="view" draggable="true" id="{{name}}">			
-				<div class="pokemonData" >
-					<div style="display:block">
-						<label class="fieldName">Name: </label>							
-						<label class="fieldValue" name="name">{{name}}</label>
-					</div>
-					<div style="display:block">
-						<label class="fieldName">Level: </label>	
-						<label class="fieldValue" name="level">{{level}}</label>
-					</div>
-				</div>
-			</div>
-		</script>
-		
-		<script type="text/x-handlebars-template" id="edit-template">
-			<div class="fieldsEdit">
-				<input class="editName fieldEdit txtPokemon" type="text" value="{{name}}" />		
-				<input class="editLevel fieldEdit txtPokemon" type="text" value="{{level}}" />
-				<button id="editPokemon" class="pokemonButton">Edit</button>
-			</div>
-		</script>
-		
+				
 		<div id="main">
 		</div>
 		<div id="pokemonapp">
