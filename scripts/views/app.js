@@ -2,10 +2,11 @@ define([
   'jquery',
   'underscore', 
   'backbone',
+	'router',
   'collections/pokedex',
 	'collections/wildPokemons',
   'views/pokemon'
-  ], function($, _, Backbone, Pokedex, WildPokemonsList, PokemonView){
+  ], function($, _, Backbone, Router, Pokedex, WildPokemonsList, PokemonView){
 			var AppView = Backbone.View.extend({
 			el: $("#pokemonapp"),		
 			

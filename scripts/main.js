@@ -8,6 +8,7 @@ require.config({
   }
 });
 
-require(['views/app'], function(AppView){
-  var app_view = new AppView;
+require(['views/app', 'router'], function(AppView, Router){
+  //var appView = new AppView;
+	Router.initialize({appView: AppView});
 });
