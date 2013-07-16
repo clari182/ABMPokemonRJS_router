@@ -21,7 +21,7 @@ define([
 				/*var source = _.template(pokemonEditTemplate);
 				var template = Handlebars.compile(source);*/
 				var data = this.model.toJSON();
-				this.$el.html(this.template(data));			
+				$(this.el).html(this.template(data));			
 				return this;
 			},
 			savePokemon: function(e) {

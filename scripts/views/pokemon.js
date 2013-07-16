@@ -3,8 +3,9 @@ define([
   'underscore', 
   'backbone',
 	//'handlebars',
+	'views/pokemonEdit',
   'text!templates/pokemonTemplate.html'
-  ], function($, _, Backbone, /*Handlebars, */pokemonTemplate){
+  ], function($, _, Backbone, /*Handlebars, */PokemonEdit, pokemonTemplate){
 	
 	var PokemonView = Backbone.View.extend({	
 		tagName: 'tr',		
@@ -42,7 +43,7 @@ define([
 		},					
 		enableEdit: function(el) {
 			var editView = new PokemonEdit({model: this.model});
-			this.$el.append(editView.render().el);							
+			$(this.el).append(editView.render().el);							
 		},
 		duplicatePokemon: function(e) {
 			Pokemons.create({
@@ -51,7 +52,7 @@ define([
 			});			
 		},
 		clear: function() {
-			this.model.destroy();
+			this.model.clear();
 		}
 	});
 	return PokemonView;

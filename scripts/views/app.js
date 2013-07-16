@@ -92,7 +92,7 @@ define([
 					name: pokemonName,
 					level: pokemonLevel
 				});		
-				pokemonAux.destroy();					
+				pokemonAux.clear();					
 			},
 			createWildPokemons: function(){
 					WildPokemonsList.create({
