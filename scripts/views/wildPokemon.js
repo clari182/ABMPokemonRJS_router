@@ -16,8 +16,8 @@ define([
 			},
 			render: function(){
 				this.$el.empty();			
-				var source   = _,template(wildPokemonTemplate);
-				var template = Handlebars.compile(source);
+				var source   = _.template(wildPokemonTemplate);
+				//var template = Handlebars.compile(source);
 				var data = { 
 					name: this.model.toJSON().name,
 					level: this.model.toJSON().level 

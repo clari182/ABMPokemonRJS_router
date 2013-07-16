@@ -6,7 +6,7 @@ define([
   ], function(_, Backbone, Store, Pokemon){
 			var Pokedex = Backbone.Collection.extend({
 				model: Pokemon,
-				comparator: "level",
+				//comparator: "level",
 				localStorage: new Store("pokemons")							
 			});
 			return new Pokedex;

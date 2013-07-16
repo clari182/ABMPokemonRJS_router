@@ -2,12 +2,13 @@ define([
   'jquery', 
   'underscore', 
   'backbone',
-	'handlebars',
+	//'handlebars',
   'text!templates/pokemonEditTemplate.html'
-  ], function($, _, Backbone, Handlebars, pokemonEditTemplate){
+  ], function($, _, Backbone, /*Handlebars, */pokemonEditTemplate){
 	
 		var PokemonEdit = Backbone.View.extend({
 			tagName: 'div',				
+			template: _.template(pokemonEditTemplate),
 			events: {		
 				'click #editPokemon': 'savePokemon',
 				'keypress .fieldEdit': 'updateOnEnter'
@@ -17,10 +18,10 @@ define([
 			},
 			render: function() {		
 				$(".fieldsEdit").parent().remove();
-				var source = _.template(pokemonEditTemplate);
-				var template = Handlebars.compile(source);
+				/*var source = _.template(pokemonEditTemplate);
+				var template = Handlebars.compile(source);*/
 				var data = this.model.toJSON();
-				this.$el.html(template(data));			
+				this.$el.html(this.template(data));			
 				return this;
 			},
 			savePokemon: function(e) {

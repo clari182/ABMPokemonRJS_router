@@ -2,29 +2,31 @@ define([
   'jquery', 
   'underscore', 
   'backbone',
-	'handlebars',
+	//'handlebars',
   'text!templates/pokemonTemplate.html'
-  ], function($, _, Backbone, Handlebars, pokemonTemplate){
+  ], function($, _, Backbone, /*Handlebars, */pokemonTemplate){
 	
 	var PokemonView = Backbone.View.extend({	
 		tagName: 'tr',		
-		template: Handlebars.compile(pokemonTemplate),
+		template: _.template(pokemonTemplate),//Handlebars.compile(pokemonTemplate),
 		events:{				
 			"dblclick .view": "edit",
 			"click .edit": "enableEdit",
 			"click .destroy": "clear"	,
-			"keypress .fieldEdit": "updateOnEnter",
+			//"keypress .fieldEdit": "updateOnEnter",
 			"click .pokemonData": "enableEdit",
 			"dblclick .pokemonData": "duplicatePokemon"
 		},
 		initialize: function() {
 			var self = this;			
-			self.bind(self.model, "change", self.render);
-			self.bind(self.model, "destroy", self.remove);
+			_.bindAll(this, 'render');
+			self.model.bind("change", self.render);
+			self.model.bind("destroy", self.remove);
 			
 		},
 		render: function() {
-			this.$el.empty();			
+			$(this.el).empty();			
+			$(this.el).html(this.template(this.model.toJSON()));
 			/*var source   = _.template(pokemonTemplate);
 			var template = Handlebars.compile(source);
 			var data = { 
