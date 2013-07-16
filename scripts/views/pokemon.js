@@ -35,7 +35,7 @@ define([
 				level: this.model.toJSON().level 
 			};
 			this.$el.html(this.template(data));*/
-			this.input = this.$(".fieldsEdit");
+			//this.input = this.$(".fieldsEdit");
 			return this;
 		},
 		edit: function() {

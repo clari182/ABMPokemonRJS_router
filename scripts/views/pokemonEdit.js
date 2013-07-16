@@ -7,7 +7,7 @@ define([
   ], function($, _, Backbone, /*Handlebars, */pokemonEditTemplate){
 	
 		var PokemonEdit = Backbone.View.extend({
-			tagName: 'div',				
+			//tagName: 'tr',				
 			template: _.template(pokemonEditTemplate),
 			events: {		
 				'click #editPokemon': 'savePokemon',
@@ -17,11 +17,12 @@ define([
 				var self = this;			
 			},
 			render: function() {		
-				$(".fieldsEdit").parent().remove();
+				//$(".fieldsEdit").parent().remove();
 				/*var source = _.template(pokemonEditTemplate);
 				var template = Handlebars.compile(source);*/
 				var data = this.model.toJSON();
-				$(this.el).html(this.template(data));			
+				//$(this.el).parent().hide();				
+				$(this.el).html(this.template(data));							
 				return this;
 			},
 			savePokemon: function(e) {
