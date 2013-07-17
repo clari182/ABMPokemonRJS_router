@@ -1,14 +1,17 @@
 require.config({
   paths: {
     jquery: 'libs/jquery/jquery-min',
-    underscore: 'libs/underscore/underscore-min',
-    backbone: 'libs/backbone/backbone-optamd3-min',
+		bootstrap: 'libs/backbone/bootstrap',
+    underscore: 'libs/underscore/underscore',
+    backbone: 'libs/backbone/backbone',
 	//handlebars: 'libs/handlebars',
-    text: 'libs/require/text'
+    text: 'libs/require/text',
+		Pokedex: 'collections/pokedex',
+		Pokemon: 'models/pokemon'
   }
 });
 
-require(['views/app', 'router'], function(AppView, Router){
-  var appView = new AppView;
-	//var router = new Router();
+require(['app'], function(App){
+  
+		App.initialize();
 });

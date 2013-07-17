@@ -13,8 +13,7 @@ define([
 		events:{				
 			"dblclick .view": "edit",
 			"click .edit": "enableEdit",
-			"click .destroy": "clear"	,
-			//"keypress .fieldEdit": "updateOnEnter",
+			"click .destroy": "clear"	,			
 			"click .pokemonData": "enableEdit",
 			"dblclick tr": "duplicatePokemon"
 		},
@@ -29,14 +28,6 @@ define([
 		render: function() {
 			$(this.el).empty();			
 			$(this.el).html(this.template(this.model.toJSON()));			
-			/*var source   = _.template(pokemonTemplate);
-			var template = Handlebars.compile(source);
-			var data = { 
-				name: this.model.toJSON().name,
-				level: this.model.toJSON().level 
-			};
-			this.$el.html(this.template(data));*/
-			//this.input = this.$(".fieldsEdit");
 			return this;
 		},
 		edit: function() {

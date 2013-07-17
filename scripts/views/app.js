@@ -29,7 +29,7 @@ define([
 				Pokedex.bind("all", this.render);
 				//this.main = $("#main");
 				
-				Pokedex.fetch();
+				//Pokedex.fetch();
 				//WildPokemonsList.fetch();
 			},
 			
