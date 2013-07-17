@@ -9,6 +9,6 @@ require.config({
 });
 
 require(['views/app', 'router'], function(AppView, Router){
-  //var appView = new AppView;
-	Router.initialize({appView: AppView});
+  var appView = new AppView;
+	//var router = new Router();
 });

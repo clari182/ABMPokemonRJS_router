@@ -14,10 +14,13 @@ define([
       // Default
       '*actions': 'defaultAction'
     },
-		initialize = function(options){	
+		initialize: function(options){	
 		
 		},		
 		openList: function(id) {
-		}	     
+		},
+		editPokemon: function(){
+			alert("Edit");
+		}
   });
  });

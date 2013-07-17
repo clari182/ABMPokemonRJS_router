@@ -16,18 +16,19 @@ define([
 			"click .destroy": "clear"	,
 			//"keypress .fieldEdit": "updateOnEnter",
 			"click .pokemonData": "enableEdit",
-			"dblclick .pokemonData": "duplicatePokemon"
+			"dblclick tr": "duplicatePokemon"
 		},
 		initialize: function() {
 			var self = this;			
 			_.bindAll(this, 'render');
 			self.model.bind("change", self.render);
 			self.model.bind("destroy", self.remove);
+			this.model.view = this;
 			
 		},
 		render: function() {
 			$(this.el).empty();			
-			$(this.el).html(this.template(this.model.toJSON()));
+			$(this.el).html(this.template(this.model.toJSON()));			
 			/*var source   = _.template(pokemonTemplate);
 			var template = Handlebars.compile(source);
 			var data = { 
@@ -45,6 +46,9 @@ define([
 			var editView = new PokemonEdit({model: this.model});
 			$(this.el).append(editView.render().el);							
 		},
+		remove: function() {
+			$(this.el).remove();
+		},
 		duplicatePokemon: function(e) {
 			Pokemons.create({
 				name: this.model.toJSON().name, 
@@ -52,7 +56,7 @@ define([
 			});			
 		},
 		clear: function() {
-			this.model.clear();
+			this.model.clear();					
 		}
 	});
 	return PokemonView;

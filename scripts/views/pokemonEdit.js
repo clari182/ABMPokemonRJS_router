@@ -10,11 +10,14 @@ define([
 			//tagName: 'tr',				
 			template: _.template(pokemonEditTemplate),
 			events: {		
-				'click #editPokemon': 'savePokemon',
+				'click .editPokemon': 'savePokemon',
 				'keypress .fieldEdit': 'updateOnEnter'
 			},
 			initialize: function() {
 				var self = this;			
+				_.bindAll(self, 'render', 'savePokemon');
+				self.model.bind('change', self.render);
+				self.model.view = self;
 			},
 			render: function() {		
 				//$(".fieldsEdit").parent().remove();
