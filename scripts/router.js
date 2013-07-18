@@ -6,57 +6,54 @@
     'views/app',
     'models/pokemon',
     'collections/pokedex'
-    ], function($, _, Backbone,GlobalView,Pokemon,Pokedex) {
+    ], function($, _, Backbone,AppView,Pokemon,Pokedex) {
      
       var AppRouter = Backbone.Router.extend({
         routes: {
           "pokemon/:cid" : "viewPokemon",
           "pokemon/delete/:cid" : "deletePokemon",
           "search" : "searchPokemons",
-          "list": "defaultAction",
-          "list/page/:page": "paginatePokemons",
+          "list": "defaultAction",         
 					
           "*actions": "defaultAction"
         }
       });
       
       var initialize = function(){
-        var globalView    = new GlobalView,
-        pokemons       = new Pokedex,
-        router  = new AppRouter,
-        currentPage,currentView;
+        var appView = new AppView;
+        var pokemons = new Pokedex;
+        var router = new AppRouter;
+		var currentView;
         
 
         router.on('route:viewPokemon', function(cid) {
-         globalView.model = pokemons.get(cid);
-         globalView.showPokemon();
+         appView.model = pokemons.get(cid);
+         appView.showPokemon();
       
        })
 
-        router.on('route:paginatePokemons', function(page) {
-          $('#mainContainer').html('<a href="#" id="leak">Test</a>');
-         $('#leak').on('click', function(){ console.log('test')})
-            currentPage = page;
-            globalView.showPokemons(page);
+        router.on('route:paginatePokemons', function() {
+          $('#pokedex').html('<a href="#" id="leak">Test</a>');
+         $('#leak').on('click', function(){ console.log('test')})            
+            appView.showPokemons();
         })
 
         router.on('route:deletePokemon', function(cid) {
             pokemon = pokemons.get(cid);
-            pokemons.remove(pokemons.get(cid));
+            pokemons.remove(pokemon);
             pokemon.destroy()
-            globalView.showPokemons(currentPage);
+            appView.showPokemons();
         })
 
         router.on('route:defaultAction', function (actions) {
-         
-            
-           
-        /* pokemons.fetch().complete(function(){
-              globalView.collection = pokemons;
+        
+		pokemons.fetch({success :function(){
+              appView.collection = pokemons;
               //currentView.render();
-              globalView.showPokemons();
-              //currentView.render().$el.appendTo("#mainContainer");
-        });*/
+              //appView.showPokemons();
+			  appView.addAll();
+              //currentView.render().$el.appendTo("#pokedex");
+        }});
   });
 
         Backbone.history.start();

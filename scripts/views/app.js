@@ -22,20 +22,24 @@ define([
 				_.bindAll(this, 'addOne', 'addAll', 'render');
 				
 				this.input = $("#newPokemon");			
-				
-				Pokedex.bind("add", this.addOne);
+				this.collection = Pokedex;
+				this.collection.bind("add", this.addOne);
 				WildPokemonsList.bind("add", this.addOneWild);
-				Pokedex.bind("reset", this.addAll);
-				Pokedex.bind("all", this.render);
+				this.collection.bind("reset", this.addAll);
+				this.collection.bind("all", this.render);
 				//this.main = $("#main");
 				
 				//Pokedex.fetch();
 				//WildPokemonsList.fetch();
 			},
 			
-			render: function() {
-				//this.$el.empty();
-				//this.main.show();
+			showPokemons: function(){
+				for ( var i = 0; i < Pokedex.length; i++) {
+					
+				}
+			},
+			
+			render: function() {				
 				return this;
 			},
 			
@@ -57,21 +61,22 @@ define([
 			},
 			
 			addAll: function() {
-				Pokedex.each(this.addOne);
+				this.collection.each(this.addOne);
 				WildPokemonsList.each(this.addOneWild);
 			},
 			
 			createOnEnter: function(e) {
 				if ( e.keyCode != 13 ) return;
 				if ( !this.$("#pokemonName").val()) return;
-				Pokedex.create(this.newAttributes());
+				this.collection.create(this.newAttributes());
 				//this.input.val("");					
 			},
 			
 			create: function () {
-				Pokedex.create(this.newAttributes());
+				var pokemon = this.collection.create(this.newAttributes());
 				this.$("#pokemonName").val("");
 				this.$("#pokemonLevel").val("");
+				this.addOne(pokemon);
 			},
 			
 			clearCompleted: function() {
@@ -89,7 +94,7 @@ define([
 				var pokemonName = data;
 				var pokemonLevel = pokemon.find("label[name=level]").html();
 				
-				var newPokemon = Pokedex.create({
+				var newPokemon = this.collection.create({
 					name: pokemonName,
 					level: pokemonLevel
 				});		
