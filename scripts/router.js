@@ -49,10 +49,7 @@
         
 		pokemons.fetch({success :function(){
               appView.collection = pokemons;
-              //currentView.render();
-              //appView.showPokemons();
-			  appView.addAll();
-              //currentView.render().$el.appendTo("#pokedex");
+              appView.addAll();            
         }});
   });
 
