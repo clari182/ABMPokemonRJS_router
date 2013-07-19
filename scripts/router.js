@@ -17,6 +17,7 @@
           "search" : "searchPokemons",
 					"newPokemon" : "newPokemon",
 					"addPokemon": "addPokemon",
+					"editPokemon": "editPokemon",
           "list": "defaultAction",         
 					
           "*actions": "defaultAction"
@@ -29,14 +30,7 @@
 				var pokemonEditView = new PokemonEditView;
 				var pokemons = new Pokedex;
 				var router = new AppRouter;
-				var currentView;
-					
-				/*var newAttributes = function() {
-					return {
-						name: $("#pokemonName").val(),
-						level:  $("#pokemonLevel").val()    
-					};
-				};*/
+				var currentView;									
 				
 				router.on('route:viewPokemon', function(cid) {
 					if (currentView )  {
@@ -45,7 +39,7 @@
 					currentView = pokemonEditView;
 									
 				 pokemonEditView.model = pokemons.get(cid);
-				 pokemonEditView.render().$el.appendTo("#pokemonapp");			 		
+				 pokemonEditView.render().$el.appendTo("#wildPokemons");			 		
 			 });
 			 
 			 router.on('route:newPokemon', function(){
@@ -55,32 +49,46 @@
 					currentView = pokemonNewView;
 					
 					pokemonNewView.model = null;
-					pokemonNewView.render().$el.appendTo("#pokemonapp");
+					pokemonNewView.render().$el.appendTo("#wildPokemons");
 							
 			 });
 			 
 			 router.on('route:addPokemon', function(){		
 						
-				var pokemon = pokemons.create({
-						name: $("#pokemonName").val(),
-						level:  $("#pokemonLevel").val()    
-					});
+					var pokemon = pokemons.create({
+							name: $("#pokemonName").val(),
+							level:  $("#pokemonLevel").val()    
+					});					
 					currentView.remove();
-					appView.showPokemons(); 					
-					//appView.create(pokemon);
+					appView = new AppView;
+					
+					appView.collection = pokemons;
+					appView.showPokemons();            
+					
+			 });
+			 
+			 router.on('route:editPokemon', function(){					
+					var nameVal =  $(".txtName").val();
+					if ( nameVal == "" ) currentView.model.clear();
+					else {
+						currentView.model.save({
+							name: nameVal, 
+							level: $(".txtLevel").val() 
+						});
+					};
+					currentView.remove();
+					//appView.showPokemons();
 			 });
 			
 				router.on('route:deletePokemon', function(cid) {
 						pokemon = pokemons.get(cid);
 						pokemons.remove(pokemon);
 						//pokemon.clear();
-						//currentView = appView;
-						//appView.collection = pokemons;
-						appView.showPokemons(); 					
+						//appView.showPokemons(); 					
 				})
 
 				router.on('route:defaultAction', function (actions) {
-				
+									
 					pokemons.fetch({success :function(){
 						appView.collection = pokemons;
 						appView.showPokemons();            
