@@ -2,17 +2,18 @@ define([
   'jquery', 
   'underscore', 
   'backbone',
-	'handlebars',	
+	//'handlebars',	
   'text!templates/pokemonNewTemplate.html'
-  ], function($, _, Backbone, Handlebars,  pokemonTemplate){
+  ], function($, _, Backbone, pokemonTemplate){
 	
 	var PokemonView = Backbone.View.extend({	
-		template: _.template(pokemonTemplate),
+		//template: _.template(pokemonTemplate),
 		remove: function(){
 			$(this.el).empty();
 		},
 		render: function(){
-			$(this.el).html(this.template());			
+			var template = Handlebars.compile(pokemonTemplate);
+			$(this.el).html(template());			
 			return this;
 		}	
 	});
