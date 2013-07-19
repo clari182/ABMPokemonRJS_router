@@ -41,8 +41,9 @@
 				 pokemonEditView.render().$el.appendTo("#wildPokemons");			 		
 				 pokemonEditView.on("editPokemon", function(pokemon){
 						pokemonEditView.model.save(pokemon);							
+						router.navigate("", { trigger:true });
 					});
-					router.navigate("", { trigger:true });
+					
 			 });
 			 
 			 router.on('route:newPokemon', function(){
@@ -54,9 +55,10 @@
 					pokemonNewView.render().$el.appendTo("#wildPokemons");
 					pokemonNewView.on("savePokemon", function(pokemon){
 						pokemons.create(pokemon);							
+						router.navigate("", { trigger:true });
 					});
 					
-					router.navigate("", { trigger:true });
+					
 					
 			 });			 		 			
 			
@@ -74,7 +76,7 @@
 				})
 
 				router.on('route:defaultAction', function (actions) {
-									
+					currentView = appView;				
 					pokemons.fetch({success :function(){
 						appView.collection = pokemons;
 						appView.showPokemons();            
