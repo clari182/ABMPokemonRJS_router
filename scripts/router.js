@@ -50,8 +50,7 @@
 							currentView.remove();
 					}
 					currentView = pokemonNewView;
-					
-					pokemonNewView.model = null;
+										
 					pokemonNewView.render().$el.appendTo("#wildPokemons");
 					pokemonNewView.on("savePokemon", function(pokemon){
 						pokemons.create(pokemon);							
@@ -62,10 +61,16 @@
 			 });			 		 			
 			
 				router.on('route:deletePokemon', function(cid) {
-						pokemon = pokemons.get(cid);
+						appView.on("deletePokemon", function(){
+							var pokemon = pokemons.get(cid);
+							pokemons.remove(pokemon);
+							//pokemon.destroy();
+							
+						});
+						var pokemon = pokemons.get(cid);
 						pokemons.remove(pokemon);
-						//pokemon.clear();
-						//appView.showPokemons(); 					
+						router.navigate("", { trigger: true });
+						
 				})
 
 				router.on('route:defaultAction', function (actions) {

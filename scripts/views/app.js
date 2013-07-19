@@ -12,21 +12,12 @@ define([
 			el: $("#pokemonTable"),		
 			
 			events: {
-				"keypress .txtPokemon": "createOnEnter",				
-				"click #clear-completed": "clearCompleted",
-				"dragover #pokedex": "dragOver",
-				"drop #pokedex": "drop"
+				"click .delete" : "deletePokemon"
 			},
 			
-			initialize: function() {
-				_.bindAll(this, 'addOne', 'addAll', 'render');
-				
+			initialize: function() {							
 				this.input = $("#newPokemon");			
-				this.collection = Pokedex;
-				this.collection.bind("add", this.addOne);
-				//WildPokemonsList.bind("add", this.addOneWild);
-				this.collection.bind("reset", this.addAll);
-				this.collection.bind("all", this.render);			
+				this.collection = Pokedex;				
 			},
 			
 			render: function() {				
@@ -39,58 +30,17 @@ define([
 					level:  this.$("#pokemonLevel").val()    
 				};
 			},
-			
-			addOne: function(pokemon) {
-				var view = new PokemonView({model: pokemon});			
-				$("#pokedex").append(view.render().el);		
-			},
-			
-			addOneWild: function(pokemon) {
-				//var view = new WildPokemonView({model: pokemon});			
-				//$("#wildPokemons").append(view.render().el);		
-			},
-			
-			addAll: function() {
-				this.collection.each(this.addOne);
-				//WildPokemonsList.each(this.addOneWild);
-			},
-			
+					
 			showPokemons: function(){
 					var  source = $("#pokedex").html();
 					var items = this.collection.toJSON();
 					var template = Handlebars.compile(ListTemplate);
 					var html = template({pokemons: items});
 					$(this.el).html(html);
-			},
-			
-			createOnEnter: function(e) {
-				if ( e.keyCode != 13 ) return;
-				if ( !this.$("#pokemonName").val()) return;
-				this.collection.create(this.newAttributes());
-				//this.input.val("");					
-			},
-			
-			clearCompleted: function() {
-				return false;
-			},
-			dragOver: function(ev){
-				event.preventDefault();
-			},
-			drop: function(ev) {
-				event.preventDefault();
-				var data=event.dataTransfer.getData("Text");
-				var pokemon = $("#"+data);
-				var el = $('<\li>').append(pokemon);
-				var $ul = event.target.parentElement;
-				var pokemonName = data;
-				var pokemonLevel = pokemon.find("label[name=level]").html();
-				
-				var newPokemon = this.collection.create({
-					name: pokemonName,
-					level: pokemonLevel
-				});		
-				pokemonAux.clear();					
-			}			
+			},					
+			deletePokemon: function() {				
+				this.trigger("deletePokemon");
+			}
 		});	
 		return AppView;
 	});

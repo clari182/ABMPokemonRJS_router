@@ -7,8 +7,7 @@ define([
   'text!templates/pokemonNewTemplate.html'
   ], function($, _, Backbone, Pokemon, pokemonTemplate){
 	
-	var PokemonView = Backbone.View.extend({	
-		//template: _.template(pokemonTemplate),
+	var PokemonView = Backbone.View.extend({			
 		model: new Pokemon,
 		events: {
 			"click .savePokemon" : "savePokemon"
