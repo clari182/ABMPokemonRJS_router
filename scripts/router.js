@@ -42,8 +42,7 @@
 				 pokemonEditView.on("editPokemon", function(pokemon){
 						pokemonEditView.model.save(pokemon);							
 						router.navigate("", { trigger:true });
-					});
-					
+					});					
 			 });
 			 
 			 router.on('route:newPokemon', function(){
