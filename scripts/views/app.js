@@ -5,8 +5,9 @@ define([
 	'router',
   'collections/pokedex',
 	'collections/wildPokemons',
-  'views/pokemon'
-  ], function($, _, Backbone, Router, Pokedex, WildPokemonsList, PokemonView){
+  'views/pokemon',
+	'text!templates/list.html'
+  ], function($, _, Backbone, Router, Pokedex, WildPokemonsList, PokemonView, ListTemplate){
 			var AppView = Backbone.View.extend({
 			el: $("#pokemonapp"),		
 			
@@ -26,11 +27,7 @@ define([
 				this.collection.bind("add", this.addOne);
 				WildPokemonsList.bind("add", this.addOneWild);
 				this.collection.bind("reset", this.addAll);
-				this.collection.bind("all", this.render);
-				//this.main = $("#main");
-				
-				//Pokedex.fetch();
-				//WildPokemonsList.fetch();
+				this.collection.bind("all", this.render);			
 			},
 			
 			showPokemons: function(){
@@ -63,6 +60,14 @@ define([
 			addAll: function() {
 				this.collection.each(this.addOne);
 				WildPokemonsList.each(this.addOneWild);
+			},
+			
+			showPokemons: function(){
+					var  source = $("#pokedex").html();
+					var items = this.collection.toJSON();
+					var template = Handlebars.compile(ListTemplate);
+					var html = template({pokemons: items});
+					$(this.el).append(html);
 			},
 			
 			createOnEnter: function(e) {
