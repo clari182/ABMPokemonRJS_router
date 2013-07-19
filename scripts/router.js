@@ -5,9 +5,10 @@
     'backbone',
     'views/app',
 		'views/pokemonNew',
+		'views/pokemonEditNew',
     'models/pokemon',
     'collections/pokedex'
-    ], function($, _, Backbone,AppView, PokemonView, Pokemon,Pokedex) {
+    ], function($, _, Backbone,AppView, PokemonNewView, PokemonEditView, Pokemon,Pokedex) {
      
       var AppRouter = Backbone.Router.extend({
         routes: {
@@ -23,7 +24,8 @@
       
 			var initialize = function(){
 			var appView = new AppView;
-			var pokemonView = new PokemonView;
+			var pokemonNewView = new PokemonNewView;
+			var pokemonEditView = new PokemonEditView;
 			var pokemons = new Pokedex;
 			var router = new AppRouter;
 			var currentView;
@@ -33,24 +35,23 @@
 				if (currentView )  {
 					currentView.remove();
 				}
-				currentView = pokemonView;
-				
-				
-			 pokemonView.model = pokemons.get(cid);
-			 pokemonView.render().$el.appendTo("#pokedex");			 
-		
+				currentView = pokemonEditView;
+								
+			 pokemonEditView.model = pokemons.get(cid);
+			 pokemonEditView.render().$el.appendTo("#pokemonapp");			 		
 		 });
 		 
 		 router.on('route:addPokemon', function(){
-			
+				if (currentView )  {
+						currentView.remove();
+				}
+				currentView = pokemonNewView;
+				
+				pokemonNewView.model = null;
+				pokemonNewView.render().$el.appendTo("#pokemonapp");
+						
 		 });
-
-			/*router.on('route:paginatePokemons', function() {
-				$('#pokedex').html('<a href="#" id="leak">Test</a>');
-			 $('#leak').on('click', function(){ console.log('test')})            
-					appView.showPokemons();
-			})*/
-
+		
 			router.on('route:deletePokemon', function(cid) {
 					pokemon = pokemons.get(cid);
 					pokemons.remove(pokemons.get(cid));
