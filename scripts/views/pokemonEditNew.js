@@ -11,11 +11,9 @@ define([
 		remove: function(){
 			$(this.el).empty();
 		},
-		render: function(){
-			var source = _.template(pokemonEditTemplate);
+		render: function(){			
 			var template = Handlebars.compile(pokemonEditTemplate);
-			var data = this.model.toJSON();
-				//$(this.el).parent().hide();				
+			var data = this.model.toJSON();				
 			$(this.el).html(template(data));								
 			return this;
 		}	

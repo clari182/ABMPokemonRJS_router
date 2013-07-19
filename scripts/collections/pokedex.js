@@ -5,6 +5,7 @@ define([
   'models/pokemon'
   ], function(_, Backbone, Store, Pokemon){
 			var Pokedex = Backbone.Collection.extend({
+				url: 'data/books.json',
 				model: Pokemon,
 				comparator: function(model) {
 						return model.get('level');

@@ -55,10 +55,10 @@
 			router.on('route:deletePokemon', function(cid) {
 					pokemon = pokemons.get(cid);
 					pokemons.remove(pokemons.get(cid));
-					
-					pokemon.destroy();
-					//appView.addAll();
-					currentView.render().$el.appendTo("#pokemonapp");
+					pokemon.clear();
+					//currentView = appView;
+					//appView.collection = pokemons;
+					appView.showPokemons(); 					
 			})
 
 			router.on('route:defaultAction', function (actions) {

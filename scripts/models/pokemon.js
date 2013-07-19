@@ -1,5 +1,6 @@
 define(['underscore', 'backbone'], function(_, Backbone) {
 	var Pokemon = Backbone.Model.extend( {
+		urlRoot: 'http://localhost:3000/pokemons/',
 		defaults: {
 				"name":"No name",
 				"level":"1"		

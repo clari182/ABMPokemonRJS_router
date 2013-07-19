@@ -9,7 +9,7 @@ define([
 	'text!templates/list.html'
   ], function($, _, Backbone, Router, Pokedex, WildPokemonsList, PokemonView, ListTemplate){
 			var AppView = Backbone.View.extend({
-			el: $("#pokemonapp"),		
+			el: $("#pokemonTable"),		
 			
 			events: {
 				"keypress .txtPokemon": "createOnEnter",
@@ -28,12 +28,6 @@ define([
 				WildPokemonsList.bind("add", this.addOneWild);
 				this.collection.bind("reset", this.addAll);
 				this.collection.bind("all", this.render);			
-			},
-			
-			showPokemons: function(){
-				for ( var i = 0; i < Pokedex.length; i++) {
-					
-				}
 			},
 			
 			render: function() {				
@@ -67,7 +61,7 @@ define([
 					var items = this.collection.toJSON();
 					var template = Handlebars.compile(ListTemplate);
 					var html = template({pokemons: items});
-					$(this.el).append(html);
+					$(this.el).html(html);
 			},
 			
 			createOnEnter: function(e) {
