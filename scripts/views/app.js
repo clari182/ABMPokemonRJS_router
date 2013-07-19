@@ -12,8 +12,7 @@ define([
 			el: $("#pokemonTable"),		
 			
 			events: {
-				"keypress .txtPokemon": "createOnEnter",
-				"click #addPokemon": "create",
+				"keypress .txtPokemon": "createOnEnter",				
 				"click #clear-completed": "clearCompleted",
 				"dragover #pokedex": "dragOver",
 				"drop #pokedex": "drop"
@@ -71,13 +70,6 @@ define([
 				//this.input.val("");					
 			},
 			
-			create: function () {
-				var pokemon = this.collection.create(this.newAttributes());
-				this.$("#pokemonName").val("");
-				this.$("#pokemonLevel").val("");
-				this.addOne(pokemon);
-			},
-			
 			clearCompleted: function() {
 				return false;
 			},
@@ -98,30 +90,7 @@ define([
 					level: pokemonLevel
 				});		
 				pokemonAux.clear();					
-			},
-			createWildPokemons: function(){
-					WildPokemonsList.create({
-						name: "Ponyta",
-						level: "12"
-					});
-					WildPokemonsList.create({
-						name: "Sulfura",
-						level: "64"
-					});
-					WildPokemonsList.create({
-						name: "Mewtoo",
-						level: "100"
-					});
-					WildPokemonsList.create({
-						name: "Ratata",
-						level: "5"
-					});
-					WildPokemonsList.create({
-						name: "Magicarp",
-						level: "8"
-					});
-			}
-			
+			}			
 		});	
 		return AppView;
 	});

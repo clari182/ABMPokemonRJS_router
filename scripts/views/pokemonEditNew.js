@@ -1,13 +1,11 @@
 define([
   'jquery', 
   'underscore', 
-  'backbone',
-	//'handlebars',	
+  'backbone',	
   'text!templates/pokemonEditTemplate.html'
   ], function($, _, Backbone,  pokemonEditTemplate){
 	
-	var PokemonView = Backbone.View.extend({	
-		//template: _.template(pokemonTemplate),
+	var PokemonView = Backbone.View.extend({			
 		remove: function(){
 			$(this.el).empty();
 		},
