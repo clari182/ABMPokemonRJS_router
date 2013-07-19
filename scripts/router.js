@@ -14,6 +14,7 @@
           "pokemon/:cid" : "viewPokemon",
           "pokemon/delete/:cid" : "deletePokemon",
           "search" : "searchPokemons",
+					"addPokemon" : "addPokemon",
           "list": "defaultAction",         
 					
           "*actions": "defaultAction"
@@ -38,7 +39,11 @@
 			 pokemonView.model = pokemons.get(cid);
 			 pokemonView.render().$el.appendTo("#pokedex");			 
 		
-		 })
+		 });
+		 
+		 router.on('route:addPokemon', function(){
+			
+		 });
 
 			/*router.on('route:paginatePokemons', function() {
 				$('#pokedex').html('<a href="#" id="leak">Test</a>');

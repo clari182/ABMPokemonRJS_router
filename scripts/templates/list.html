@@ -1,0 +1,20 @@
+<table class="table-condensed">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Level</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody id="pokedex">	
+		{{#each pokemons}} 
+		<tr>
+			<td><a href='/#pokemon/{{ id }}'>{{ name }}</a></td>
+			<td>{{ level }}</td>
+			<td><a href='/#pokemon/{{ id }}' class="btn btn-small btn-primary pull-right"><i class='icon-remove icon-white'/>Edit Pokemon</a></td>
+			<td><a href='/#pokemon/delete/{{ id }}' class="btn btn-small btn-primary pull-right"><i class='icon-remove icon-white'/>Delete Pokemon</a></td>
+		</tr>
+		{{/each}}
+	</tbody>
+</table>
