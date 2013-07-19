@@ -57,9 +57,6 @@
 						pokemons.create(pokemon);							
 						router.navigate("", { trigger:true });
 					});
-					
-					
-					
 			 });			 		 			
 			
 				router.on('route:deletePokemon', function(cid) {
@@ -83,7 +80,7 @@
 					}});			
 				});
 
-					Backbone.history.start();
+				Backbone.history.start();
       };
       return { 
         initialize: initialize
