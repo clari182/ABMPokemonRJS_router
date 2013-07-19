@@ -15,8 +15,7 @@
           "pokemon/:cid" : "viewPokemon",
           "pokemon/delete/:cid" : "deletePokemon",
           "search" : "searchPokemons",
-					"newPokemon" : "newPokemon",
-					"addPokemon": "addPokemon",
+					"newPokemon" : "newPokemon",					
 					"editPokemon": "editPokemon",
           "list": "defaultAction",         
 					
@@ -40,6 +39,10 @@
 									
 				 pokemonEditView.model = pokemons.get(cid);
 				 pokemonEditView.render().$el.appendTo("#wildPokemons");			 		
+				 pokemonEditView.on("editPokemon", function(pokemon){
+						pokemonEditView.model.save(pokemon);							
+					});
+					router.navigate("", { trigger:true });
 			 });
 			 
 			 router.on('route:newPokemon', function(){
@@ -50,35 +53,13 @@
 					
 					pokemonNewView.model = null;
 					pokemonNewView.render().$el.appendTo("#wildPokemons");
-							
-			 });
-			 
-			 router.on('route:addPokemon', function(){		
-						
-					var pokemon = pokemons.create({
-							name: $("#pokemonName").val(),
-							level:  $("#pokemonLevel").val()    
-					});					
-					currentView.remove();
-					appView = new AppView;
+					pokemonNewView.on("savePokemon", function(pokemon){
+						pokemons.create(pokemon);							
+					});
 					
-					appView.collection = pokemons;
-					appView.showPokemons();            
+					router.navigate("", { trigger:true });
 					
-			 });
-			 
-			 router.on('route:editPokemon', function(){					
-					var nameVal =  $(".txtName").val();
-					if ( nameVal == "" ) currentView.model.clear();
-					else {
-						currentView.model.save({
-							name: nameVal, 
-							level: $(".txtLevel").val() 
-						});
-					};
-					currentView.remove();
-					//appView.showPokemons();
-			 });
+			 });			 		 			
 			
 				router.on('route:deletePokemon', function(cid) {
 						pokemon = pokemons.get(cid);

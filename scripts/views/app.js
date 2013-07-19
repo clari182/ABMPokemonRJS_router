@@ -24,7 +24,7 @@ define([
 				this.input = $("#newPokemon");			
 				this.collection = Pokedex;
 				this.collection.bind("add", this.addOne);
-				WildPokemonsList.bind("add", this.addOneWild);
+				//WildPokemonsList.bind("add", this.addOneWild);
 				this.collection.bind("reset", this.addAll);
 				this.collection.bind("all", this.render);			
 			},
@@ -46,13 +46,13 @@ define([
 			},
 			
 			addOneWild: function(pokemon) {
-				var view = new WildPokemonView({model: pokemon});			
-				$("#wildPokemons").append(view.render().el);		
+				//var view = new WildPokemonView({model: pokemon});			
+				//$("#wildPokemons").append(view.render().el);		
 			},
 			
 			addAll: function() {
 				this.collection.each(this.addOne);
-				WildPokemonsList.each(this.addOneWild);
+				//WildPokemonsList.each(this.addOneWild);
 			},
 			
 			showPokemons: function(){
