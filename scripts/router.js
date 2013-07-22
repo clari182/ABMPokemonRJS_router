@@ -58,16 +58,8 @@
 					});
 			 });			 		 			
 			
-				router.on('route:deletePokemon', function(cid) {
-						appView.on("deletePokemon", function(){
-							var pokemon = pokemons.get(cid);
-							pokemons.remove(pokemon);
-							
-							//pokemon.destroy();
-							
-						});
-						var pokemon = pokemons.get(cid);
-						//pokemons.remove(pokemon);
+				router.on('route:deletePokemon', function(cid) {						
+						var pokemon = pokemons.get(cid);						
 						pokemon.destroy();
 						router.navigate("", { trigger: true });
 						
