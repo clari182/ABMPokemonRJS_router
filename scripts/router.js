@@ -38,7 +38,7 @@
 					currentView = pokemonEditView;
 									
 				 pokemonEditView.model = pokemons.get(cid);
-				 pokemonEditView.render().$el.appendTo("#wildPokemons");			 		
+				 pokemonEditView.render().$el.appendTo(".actionDiv");			 		
 				 pokemonEditView.on("editPokemon", function(pokemon){
 						pokemonEditView.model.save(pokemon);							
 						router.navigate("", { trigger:true });
@@ -51,7 +51,7 @@
 					}
 					currentView = pokemonNewView;
 										
-					pokemonNewView.render().$el.appendTo("#wildPokemons");
+					pokemonNewView.render().$el.appendTo(".actionDiv");
 					pokemonNewView.on("savePokemon", function(pokemon){
 						pokemons.create(pokemon);							
 						router.navigate("", { trigger:true });
@@ -62,11 +62,13 @@
 						appView.on("deletePokemon", function(){
 							var pokemon = pokemons.get(cid);
 							pokemons.remove(pokemon);
+							
 							//pokemon.destroy();
 							
 						});
 						var pokemon = pokemons.get(cid);
-						pokemons.remove(pokemon);
+						//pokemons.remove(pokemon);
+						pokemon.destroy();
 						router.navigate("", { trigger: true });
 						
 				})
