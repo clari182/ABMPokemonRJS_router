@@ -6,9 +6,13 @@ require.config({
     backbone: 'libs/backbone/backbone',
 		handlebars: 'libs/handlebars',
     text: 'libs/require/text',
-		Pokedex: 'collections/pokedex',
+		Pokemons: 'collections/pokemons',
 		Pokemon: 'models/pokemon'
-  }
+  },
+	shim: {
+		'Backbone': ['Underscore', 'jQuery'],
+		'SocialNet': ['Backbone']
+	}
 });
 
 require(['app'], function(App){

@@ -7,8 +7,8 @@
 		'views/pokemonNew',		
 		'views/pokemonEditNew',
     'models/pokemon',
-    'collections/pokedex'
-    ], function($, _, Backbone,AppView, PokemonNewView, PokemonEditView, Pokemon,Pokedex) {
+    'collections/pokemons'
+    ], function($, _, Backbone,AppView, PokemonNewView, PokemonEditView, Pokemon,Pokemons) {
      
       var AppRouter = Backbone.Router.extend({
         routes: {
@@ -17,7 +17,11 @@
           "search" : "searchPokemons",
 					"newPokemon" : "newPokemon",					
 					"editPokemon": "editPokemon",
-          "list": "defaultAction",         
+          "list": "defaultAction",  
+					"index": "index",
+					"login": "login",
+					"register": "register",
+					"forgotPassword": "forgotPassword",
 					
           "*actions": "defaultAction"
         }
@@ -27,7 +31,7 @@
 				var appView = new AppView;
 				var pokemonNewView = new PokemonNewView;
 				var pokemonEditView = new PokemonEditView;
-				var pokemons = new Pokedex;
+				var pokemons = new Pokemons;
 				var router = new AppRouter;
 				var currentView;									
 				
@@ -53,7 +57,10 @@
 										
 					pokemonNewView.render().$el.appendTo(".actionDiv");
 					pokemonNewView.on("savePokemon", function(pokemon){
-						pokemons.create(pokemon);							
+						pokemons.create(pokemon);													
+						/*$.post('/pokemons', { pokemon: pokemon },
+							function (data) {}
+						);*/
 						router.navigate("", { trigger:true });
 					});
 			 });			 		 			

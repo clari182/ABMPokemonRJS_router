@@ -1,6 +1,7 @@
 var fs = require('fs');
 var express = require('express'),
   http = require('http');
+	pokemon = require('./scripts/pokemons');
 
 var app = express();
 
@@ -26,9 +27,15 @@ app.get('/', function (req, res) {
   fs.readFile('main.html', 'utf8', function (err, text) {
     res.send(text);
   });
+//pokemon.findAll;
 });
+/*
+app.get('/pokemons', pokemon.findAll);
+app.get('/pokemons/:id', pokemon.findById);
+app.post('/pokemons', pokemon.addPokemon);
+app.put('/pokemons/:id', pokemon.updatePokemon);
+app.delete('/pokemon/delete/:id', pokemon.deletePokemon);*/
 
 http.createServer(app).listen(app.get('port'), function () {
-
   console.log("Express server listening on port " + app.get('port'));
 });

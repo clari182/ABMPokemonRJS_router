@@ -4,14 +4,19 @@ module.exports = function(grunt) {
     concat: {
       all: {
         src: "./scripts/**/*.js",
-        dest: "./distribucion/pokedex.js"
+        dest: "./build/pokemons.js"
       }
 		},
     uglify: {
       all: {
-        src: "./distribucion/pokedex.js",
-        dest: './distribucion/pokedex.min.js'
+        src: "./build/pokemons.js",
+        dest: './build/pokemons.min.js'
       }
+		},
+		qunit:{
+			target: {
+				src: ['test/**/*.html']
+			}
 		}
   });
  

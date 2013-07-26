@@ -3,11 +3,11 @@ define([
   'underscore', 
   'backbone',
 	'router',
-  'collections/pokedex',
+  'collections/pokemons',
 	'collections/wildPokemons',
   'views/pokemon',
 	'text!templates/list.html'
-  ], function($, _, Backbone, Router, Pokedex, WildPokemonsList, PokemonView, ListTemplate){
+  ], function($, _, Backbone, Router, Pokemons, WildPokemonsList, PokemonView, ListTemplate){
 			var AppView = Backbone.View.extend({
 			el: $("#pokemonTable"),		
 			
@@ -17,7 +17,7 @@ define([
 			
 			initialize: function() {							
 				this.input = $("#newPokemon");			
-				this.collection = Pokedex;				
+				this.collection = Pokemons;				
 			},
 			
 			render: function() {				
@@ -32,7 +32,7 @@ define([
 			},
 					
 			showPokemons: function(){
-					var  source = $("#pokedex").html();
+					var  source = $("#pokemons").html();
 					var items = this.collection.toJSON();
 					var template = Handlebars.compile(ListTemplate);
 					var html = template({pokemons: items});
