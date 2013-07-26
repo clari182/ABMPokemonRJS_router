@@ -62,7 +62,7 @@
 						console.log(pokemon);
 						pokemon.save();	
 						pokemons.add(pokemon);						
-						router.navigate("", { trigger:true });
+						router.navigate("/#", true);
 					});
 			 });			 		 			
 			
@@ -74,9 +74,7 @@
 				})
 
 				router.on('route:defaultAction', function (actions) {
-					currentView = appView;				
-					var p = new Pokemon({ name: "lalala", level: "1" });
-					p.save();
+					currentView = appView;									
 					pokemons.fetch({success :function(){
 						appView.collection = pokemons;
 						appView.showPokemons();            
