@@ -21,10 +21,12 @@ define([
 			return this;
 		},
 		savePokemon: function(){
-			var pokemon = {
+		console.log('savePokemon');
+			var pokemon = new Pokemon({
 				name: this.$el.find('.txtName').val(),
 				level: this.$el.find('.txtLevel').val()
-			}
+			});
+			console.log('antes del trigger');
 			this.trigger("savePokemon", pokemon);
 		}
 	});

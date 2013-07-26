@@ -12,8 +12,8 @@
      
       var AppRouter = Backbone.Router.extend({
         routes: {
-          "pokemon/:cid" : "viewPokemon",
-          "pokemon/delete/:cid" : "deletePokemon",
+          "pokemons/:cid" : "viewPokemon",
+          "pokemons/delete/:cid" : "deletePokemon",
           "search" : "searchPokemons",
 					"newPokemon" : "newPokemon",					
 					"editPokemon": "editPokemon",
@@ -50,17 +50,18 @@
 			 });
 			 
 			 router.on('route:newPokemon', function(){
-					if (currentView )  {
+				console.log('antes de definir el trigger');
+				if (currentView )  {
 							currentView.remove();
 					}
 					currentView = pokemonNewView;
 										
 					pokemonNewView.render().$el.appendTo(".actionDiv");
 					pokemonNewView.on("savePokemon", function(pokemon){
-						pokemons.create(pokemon);													
-						/*$.post('/pokemons', { pokemon: pokemon },
-							function (data) {}
-						);*/
+					console.log('ejecutando el trigger');
+						console.log(pokemon);
+						pokemon.save();	
+						pokemons.add(pokemon);						
 						router.navigate("", { trigger:true });
 					});
 			 });			 		 			
@@ -74,10 +75,13 @@
 
 				router.on('route:defaultAction', function (actions) {
 					currentView = appView;				
+					var p = new Pokemon({ name: "lalala", level: "1" });
+					p.save();
 					pokemons.fetch({success :function(){
 						appView.collection = pokemons;
 						appView.showPokemons();            
-					}});			
+					}});
+					
 				});
 
 				Backbone.history.start();

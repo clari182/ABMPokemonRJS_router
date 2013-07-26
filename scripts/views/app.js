@@ -35,6 +35,7 @@ define([
 					var  source = $("#pokemons").html();
 					var items = this.collection.toJSON();
 					var template = Handlebars.compile(ListTemplate);
+					console.log(items);
 					var html = template({pokemons: items});
 					$(this.el).html(html);
 			},					

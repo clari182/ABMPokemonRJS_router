@@ -5,6 +5,21 @@ var express = require('express'),
 
 var app = express();
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
+    }
+};
+app.use(allowCrossDomain);
+
 app.configure(function () {
 
   app.set('port', process.env.PORT || 3000);
@@ -13,6 +28,7 @@ app.configure(function () {
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname));
+	
 });
 
 app.configure('development', function () {
@@ -24,17 +40,17 @@ app.configure('development', function () {
 //
 app.get('/', function (req, res) {
 
-  fs.readFile('main.html', 'utf8', function (err, text) {
+  fs.readFile('index.html', 'utf8', function (err, text) {
     res.send(text);
   });
-//pokemon.findAll;
 });
-/*
+
 app.get('/pokemons', pokemon.findAll);
 app.get('/pokemons/:id', pokemon.findById);
-app.post('/pokemons', pokemon.addPokemon);
+app.post('/pokemons/', pokemon.addPokemon);
 app.put('/pokemons/:id', pokemon.updatePokemon);
-app.delete('/pokemon/delete/:id', pokemon.deletePokemon);*/
+app.delete('/pokemons/:id', pokemon.deletePokemon);
+
 
 http.createServer(app).listen(app.get('port'), function () {
   console.log("Express server listening on port " + app.get('port'));

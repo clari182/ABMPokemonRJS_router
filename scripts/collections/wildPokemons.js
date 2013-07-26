@@ -1,12 +1,12 @@
 define([
   'underscore', 
   'backbone', 
-  'libs/backbone/localStorage', 
+  //'libs/backbone/localStorage', 
   'models/pokemon'
-  ], function(_, Backbone, Store, Pokemon){
+  ], function(_, Backbone, /*Store, */Pokemon){
 			var WildPokemons = Backbone.Collection.extend({
-				model: Pokemon,
-				localStorage: new Store("wildPokemons")				
+				model: Pokemon
+				//localStorage: new Store("wildPokemons")				
 			});
 			return new WildPokemons;
 	});
